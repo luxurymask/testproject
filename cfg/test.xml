@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="off" monitorInterval="30">
+    <Appenders>
+    	<Console name="Console" target="SYSTEM_OUT">  
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />  
+        </Console>  
+        <NoSql name="mongoAppender" bufferSize="10"> <!--建议bufferSize配置,减少频繁写操作。 -->
+            <MongoDb databaseName="sl0" collectionName="log4j2" server="127.0.0.1" port="27017" />
+        </NoSql>
+    </Appenders>
+    
+    <Loggers>
+        <Logger name="mongologger" level="error">
+            <AppenderRef ref="mongoAppender"/>
+        </Logger>
+
+        <Root level="trace">
+            <AppenderRef ref="Console" />
+        </Root>
+    </Loggers>
+</Configuration>

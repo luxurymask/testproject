@@ -1,0 +1,14 @@
+<Configuration monitorInterval="300">
+    <Appenders>
+        <NoSql name="databaseAppender">
+            <MongoDb databaseName="sl0" collectionName="log4j2"
+                server="localhost" port="27017" />
+        </NoSql>
+    </Appenders>
+    
+    <Loggers>
+        <Root level="trace">
+      		<AppenderRef ref="databaseAppender"/>
+    	</Root>
+    </Loggers>
+</Configuration>
