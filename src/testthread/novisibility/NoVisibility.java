@@ -37,6 +37,7 @@ public class NoVisibility {
 				}
 				System.out.println(Thread.currentThread().getName() + " set 3.");
 				nv.set(3);
+				System.out.println(Thread.currentThread().getName() + " set 3 over.");
 			}
 			
 		}).start();
@@ -47,9 +48,9 @@ public class NoVisibility {
 			public void run() {
 				// TODO Auto-generated method stub
 				while(nv.ready == false){
-					System.out.println(Thread.currentThread().getName() + " " + nv.get());
+					System.out.println(Thread.currentThread().getName() + " " + nv.synchronizedGet());
 				}
-				System.out.println(Thread.currentThread().getName() + " " + nv.get());
+				System.out.println(Thread.currentThread().getName() + " " + nv.synchronizedGet());
 			}
 			
 		}).start();
@@ -60,9 +61,9 @@ public class NoVisibility {
 			public void run() {
 				// TODO Auto-generated method stub
 				while(nv.ready == false){
-					System.out.println(Thread.currentThread().getName() + " " + nv.get());
+					System.out.println(Thread.currentThread().getName() + " " + nv.synchronizedGet());
 				}
-				System.out.println(Thread.currentThread().getName() + " " + nv.get());
+				System.out.println(Thread.currentThread().getName() + " " + nv.synchronizedGet());
 			}
 			
 		}).start();
