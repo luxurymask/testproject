@@ -4,8 +4,17 @@ public class NoVisibility {
 	private int value = 0;
 	private boolean ready = false;
 	
-	public synchronized int get(){
+	public synchronized int synchronizedGet(){
 		return value;
+	}
+	
+	public int get(){
+		return value;
+	}
+	
+	public synchronized void synchronizedSet(int value){
+		this.value = value;
+		this.ready = true;
 	}
 	
 	public void set(int value){
@@ -26,6 +35,7 @@ public class NoVisibility {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				System.out.println(Thread.currentThread().getName() + " set 3.");
 				nv.set(3);
 			}
 			
@@ -37,9 +47,22 @@ public class NoVisibility {
 			public void run() {
 				// TODO Auto-generated method stub
 				while(nv.ready == false){
-					System.out.println(nv.get());
+					System.out.println(Thread.currentThread().getName() + " " + nv.get());
 				}
-				System.out.println(nv.get());
+				System.out.println(Thread.currentThread().getName() + " " + nv.get());
+			}
+			
+		}).start();
+		
+		new Thread(new Runnable(){
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				while(nv.ready == false){
+					System.out.println(Thread.currentThread().getName() + " " + nv.get());
+				}
+				System.out.println(Thread.currentThread().getName() + " " + nv.get());
 			}
 			
 		}).start();
