@@ -13,15 +13,17 @@ public class Outer {
 		
 	}
 	
-	public Outer(){
+	public Outer() throws Exception{
 		getOuter(new Inner(){
 			
 		});
 	}
 
 	//TODO
-	public static Outer getOuter(Inner inner){
-		Field outerThis = inner.getClass().getDeclaredFields()[0];
+	public static Outer getOuter(Inner inner) throws Exception{
+		Field outerThisField0 = inner.getClass().getDeclaredFields()[0];
+		int i = outerThisField0.getInt(inner);
+		System.out.println(i);
 		return null;
 	}
 }
